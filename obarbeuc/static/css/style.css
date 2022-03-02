@@ -965,7 +965,16 @@ opacity: .5; }
   
 }
 
+.col-center {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.custom-form-control {
+    font-size: 13px;
+    color: black;
+}
 	
 
 

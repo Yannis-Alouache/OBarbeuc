@@ -11,3 +11,17 @@ def HomeView(request):
         'todayLunchs' : todayLunchs
     }
     return render(request, "home.html", context)
+
+def SignInView(request):
+    context = {
+
+    }
+
+    return render(request, "signIn.html", context)
+
+def LogInView(request):
+    context = {
+
+    }
+    
+    return render(request, "logIn.html", context)
