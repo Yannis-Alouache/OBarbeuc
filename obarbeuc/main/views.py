@@ -13,3 +13,7 @@ def HomeView(request):
         'todayLunchs' : todayLunchs
     }
     return render(request, "home.html", context)
+
+def ReservationView(request):
+    context = {}
+    return render(request, "reservation.html", context)
