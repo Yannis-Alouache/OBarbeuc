@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+from django.conf import settings
 
 from .models import TodayLunch
 
@@ -11,17 +13,3 @@ def HomeView(request):
         'todayLunchs' : todayLunchs
     }
     return render(request, "home.html", context)
-
-def SignInView(request):
-    context = {
-
-    }
-
-    return render(request, "signIn.html", context)
-
-def LogInView(request):
-    context = {
-
-    }
-    
-    return render(request, "logIn.html", context)

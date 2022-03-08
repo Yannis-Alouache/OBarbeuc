@@ -100,8 +100,19 @@
 
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-center">
                     <div class="section-title text-center">
-                        <form>
-                            <div class="form-group row">
+                        <form method="post">
+                            {% if form.errors %}
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <div class="alert alert-danger">
+                                            <strong>{{ error|escape }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                        {{ form }}
+                        {% csrf_token %}
+                            {% comment %} <div class="form-group row">
                               <label for="text1" class="col-4 col-form-label"></label> 
                               <div class="col-8">
                                 <input id="email" name="email" placeholder="Email" type="email" class="form-control custom-form-control">
@@ -112,13 +123,13 @@
                               <div class="col-8">
                                 <input id="password" name="password" placeholder="Mot de passe" type="password" class="form-control custom-form-control">
                               </div>
-                            </div>
+                            </div> {% endcomment %}
                             <div class="form-group row">
                               <div class="offset-4 col-8">
                                 <button name="submit" type="submit" class="btn btn-primary">Connexion</button>
                               </div>
                             </div>
-                          </form>
+                        </form>
                     </div>
                 </div>                
             </div>
