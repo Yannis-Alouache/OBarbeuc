@@ -548,7 +548,7 @@ text-transform: uppercase; }
 .counter_block{}
 .counter_box{    
     border-bottom: 1px solid #eee;
-        padding: 40px 0px;  }
+        padding: 30px 0px;  }
 .counter_number{font-weight: 900; margin-bottom: 0px;}
 .counter_text{font-size: 12px; text-transform: uppercase; letter-spacing: 2px;}
 
