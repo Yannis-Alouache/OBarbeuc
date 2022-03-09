@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'account'
 ]
 
 MIDDLEWARE = [
@@ -133,4 +134,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'login'
-# AUTH_USER_MODEL = 'user.User'
+AUTH_USER_MODEL = 'account.Account'
