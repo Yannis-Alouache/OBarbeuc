@@ -10,3 +10,10 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = Account
         fields = ('email', 'first_name', 'last_name', 'phone', 'password1', 'password2')
+
+    def clean_password2(self):
+        password1 = self.cleaned_data['password1']
+        password2 = self.cleaned_data['password2']
+
+        if password1 and password2 and password1 != password2:
+            self.add_error('password2', "Les mots de passe ne sont pas identique")

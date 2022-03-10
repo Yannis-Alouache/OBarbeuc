@@ -17,6 +17,7 @@ def RegisterView(request):
             redirect('home')
         else:
             context['form'] = form
+            print(form.error_messages)
     else:
         form = RegisterForm()
         context['form'] = form
