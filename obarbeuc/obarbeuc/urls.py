@@ -19,12 +19,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from main.views import HomeView, ReservationView
-from account.views import RegisterView, LoginView
+from account.views import RegisterView, LoginView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView, name="home"),
     path('inscription', RegisterView, name="register"),
     path('connexion', LoginView, name="login"), 
-    path('reservation', ReservationView, name="reservation")
+    path('deconnexion', LogoutView, name="logout"),
+    path('reservation', ReservationView, name="reservation"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

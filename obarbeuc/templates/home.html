@@ -80,7 +80,12 @@
                                     </ul>
                                 </li>
                                 <li class="active"><a href="{% url 'register' %}" title="Inscription">Inscription</a></li>
-                                <li class="active"><a href="{% url 'login' %}" title="Connexion">Connexion</a></li>
+                                {% if request.user.is_authenticated %}
+                                    <li class="active"><a href="{% url 'logout' %}" title="Connexion">Deconnexion</a></li>
+                                {% else %}
+                                    <li class="active"><a href="{% url 'login' %}" title="Connexion">Connexion</a></li>
+                                {% endif %}
+
                             </ul>
                         </div>
                     </div>

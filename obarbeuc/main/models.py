@@ -7,6 +7,10 @@ class TodayLunch(models.Model):
     def __str__(self):
         return self.title
 
+class MenuItem(models.Model):
+    title = models.CharField(max_length=50, blank=False, null=False)
+    price = models.IntegerField(blank=False, null=False)
+
 class Reservation(models.Model):
     SERVICE_CHOICE = [
         ("Midi", "Midi"),
