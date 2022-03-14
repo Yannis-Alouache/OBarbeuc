@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,14 +72,14 @@
                     <div class="navigation">
                         <div id="navigation">
                             <ul>
-                                <li class="active"><a href="{% url 'home' %}" title="Home">Home</a></li>
-                                <li class="has-sub"><a href="blog-default.html" title="Blog">News</a>
-                                    <ul>
-                                        <li><a href="blog-default.html" title="Blog" >Blog Default</a></li>
-                                        <li><a href="blog-single.html" title="Blog Single" >Blog Single</a></li>
-                                    </ul>
-                                </li>
-                                <li class="active"><a href="{% url 'login' %}" title="Home">Connexion</a></li>
+                                <li class="active"><a href="{% url 'home' %}" title="Home">Accueil</a></li>
+                                <li class="active"><a href="{% url 'register' %}" title="Inscription">Inscription</a></li>
+                                {% if request.user.is_authenticated %}
+                                    <li class="active"><a href="{% url 'logout' %}" title="Connexion">Deconnexion</a></li>
+                                {% else %}
+                                    <li class="active"><a href="{% url 'login' %}" title="Connexion">Connexion</a></li>
+                                {% endif %}
+
                             </ul>
                         </div>
                     </div>
@@ -89,7 +90,7 @@
 
     {% block content %}
     {% endblock %}
-    
+
     <div class="footer">
         <div class="container">
             <div class="row">
