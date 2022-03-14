@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from .forms import RegisterForm
+from .forms import RegisterForm, LoginForm
 
 # Create your views here.
 def RegisterView(request):
@@ -14,7 +14,9 @@ def RegisterView(request):
             account = authenticate(email=email, password=raw_passord)
             login(request, account)
             print("==========  COMPTE CREER SUUUUUUUUUUUUUUUUUUUUUUU   ==========")
-            redirect('home')
+            context['form'] = form
+            context['message'] = f'Compte crée, Bienvenue {account.first_name}'
+            return render(request, 'register.html', context)
         else:
             context['form'] = form
             print(form.error_messages)
@@ -25,4 +27,23 @@ def RegisterView(request):
 
 
 def LoginView(request):
-    return render(request, 'login.html', {})
+    context = {}
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        context['form'] = form
+        if form.is_valid():
+            user = authenticate(
+                email=form.cleaned_data["email"],
+                password=form.cleaned_data["password"]
+            )
+            if user is not None:
+                login(request, user)
+                print("connectez avec " + user.first_name + " " + user.last_name)
+                context['messageSuccess'] = f'Bonjour {user.first_name} ! Vous êtes connecté'
+                return render(request, 'login.html', context)
+            else:
+                context['messageFail'] = "Vous n'êtes pas encore inscrit"
+                return render(request, 'login.html', context)
+    else:
+        context['form'] = LoginForm()
+    return render(request, 'login.html', context)

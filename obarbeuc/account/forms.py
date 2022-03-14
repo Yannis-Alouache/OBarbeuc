@@ -17,3 +17,7 @@ class RegisterForm(UserCreationForm):
 
         if password1 and password2 and password1 != password2:
             self.add_error('password2', "Les mots de passe ne sont pas identique")
+
+class LoginForm(forms.Form):
+    email = forms.EmailField(max_length=255, error_messages={'required': 'Entrez votre E-mail', 'invalid': 'email non valide'})
+    password = forms.CharField(max_length=255, widget=forms.PasswordInput)
