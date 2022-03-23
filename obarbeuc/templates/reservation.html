@@ -8,62 +8,98 @@
                         <h1>Reservation</h1>
                         <h5>Cuisine healthy & gastronomique</h5>
                     </div>
+                    {% if message_failure %}
+                      <div class="alert alert-danger" role="alert">
+                        {{message_failure}}
+                      </div>
+                    {% elif message_success %}
+                      <div class="alert alert-success" role="alert">
+                        {{message_success}}
+                      </div>
+                    {% endif %}
+
                 </div>
 
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-center">
                     <div class="section-title text-center">
-                        <form>
+                        <form method="post">
+
+                            {% csrf_token %}
                             <div class="form-group row">
                               <label for="text1" class="col-4 col-form-label"></label> 
                               <div class="col-8">
-                                <input id="email" name="email" placeholder="Email" type="email" class="form-control custom-form-control">
+                                <input id="email" name="{{form.email.name}}" placeholder="Email" type="email" class="form-control custom-form-control">
+                                  {% for error in form.email.errors %}
+                                    <small class="form-text text-muted text-danger">{{error}}</small>
+                                  {% endfor %}
                               </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="text" class="col-4 col-form-label"></label> 
                                 <div class="col-8">
-                                  <input id="name" name="name" placeholder="Nom" type="char" class="form-control custom-form-control">
+                                  <input id="name" name="{{form.lastName.name}}" placeholder="Nom" type="char" class="form-control custom-form-control">
+                                    {% for error in form.lastName.errors %}
+                                      <small class="form-text text-muted text-danger">{{error}}</small>
+                                    {% endfor %}
                                 </div>
                               </div>
 
                             <div class="form-group row">
                                 <label for="text" class="col-4 col-form-label"></label> 
                                 <div class="col-8">
-                                  <input id="Firstname" name="Firstname" placeholder="Prénom" type="char" class="form-control custom-form-control">
+                                  <input id="Firstname" name="{{form.firstName.name}}" placeholder="Prénom" type="char" class="form-control custom-form-control">
+                                    {% for error in form.firstName.errors %}
+                                      <small class="form-text text-muted text-danger">{{error}}</small>
+                                    {% endfor %}
                                 </div>
                             </div>
 
                             <div class="form-group row">
                               <label for="text" class="col-4 col-form-label"></label> 
                               <div class="col-8">
-                                <input id="phone" name="phone" placeholder="Téléphone" type="int" class="form-control custom-form-control">
+                                <input id="phone" name="{{form.phone.name}}" placeholder="Téléphone" type="int" class="form-control custom-form-control">
+                                  {% for error in form.phone.errors %}
+                                    <small class="form-text text-muted text-danger">{{error}}</small>
+                                  {% endfor %}
                               </div>
                             </div>
 
                             <div class="form-group row">
                               <label for="text" class="col-4 col-form-label"></label> 
                               <div class="col-8">
-                                <input id="date" name="date" placeholder="Date et Heure" type="datetime-local" class="form-control custom-form-control">
+                                <input id="date" name="{{form.date.name}}" placeholder="Date et Heure" type="date" class="form-control custom-form-control">
+                                  {% for error in form.date.errors %}
+                                    <small class="form-text text-muted text-danger">{{error}}</small>
+                                  {% endfor %}
                               </div>
                             </div>
 
                             <div class="form-group row">
                               <label for="text" class="col-4 col-form-label"></label> 
                               <div class="col-8">
-                                <input id="TableSetNum" name="TableSetNum" placeholder="Nombre de couvert" type="int" class="form-control custom-form-control">
+                                <input id="TableSetNum" name="{{form.tableSetNumber.name}}" placeholder="Nombre de couvert" type="int" class="form-control custom-form-control">
+                                {% for error in form.tableSetNumber.errors %}
+                                    <small class="form-text text-muted text-danger">{{error}}</small>
+                                {% endfor %}
                               </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="text" class="col-4 col-form-label"></label> 
                                 <div class="col-8">
-                                   <select id="service" name="service">
-                                       <option value="midi" name="midi">Midi</option>
-                                       <option value="soir" name="soir">Soir</option>
-                                   </select>
+                                   <select id="service" class="form-control custom-form-control" name="{{form.service.name}}">
+                                      {% for key, value in form.fields.service.choices %}
+                                          <option value="{{ key }}">{{ value }}</option>
+                                      {% endfor %}
+                                   </select>  
+                                    {% for error in form.service.errors %}
+                                      <small class="form-text text-muted text-danger">{{error}}</small>
+                                    {% endfor %}
                                 </div>
                             </div>
+
+                            <br>
 
                             <div class="form-group row">
                               <div class="offset-4 col-8">

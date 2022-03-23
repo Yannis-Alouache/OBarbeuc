@@ -18,8 +18,9 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from main.views import HomeView, ReservationView
+from main.views import HomeView
 from account.views import RegisterView, LoginView, LogoutView
+from reservation.views import ReservationView
 
 urlpatterns = [
     path('admin/', admin.site.urls),

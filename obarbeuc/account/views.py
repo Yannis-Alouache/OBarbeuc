@@ -42,7 +42,7 @@ def LoginView(request):
                 context['messageSuccess'] = f'Bonjour {user.first_name} ! Vous êtes connecté'
                 return render(request, 'login.html', context)
             else:
-                context['messageFail'] = "Vous n'êtes pas encore inscrit"
+                context['messageFail'] = "Erreur de connexion"
                 return render(request, 'login.html', context)
     else:
         context['form'] = LoginForm()

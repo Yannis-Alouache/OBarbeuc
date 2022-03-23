@@ -1,8 +1,7 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
-
-from .models import TodayLunch, Reservation, MenuItem
+from .models import TodayLunch, MenuItem
 from account.models import Account
+from reservation.models import Reservation
 
 # Register your models here.
 admin.site.register(TodayLunch)
