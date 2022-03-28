@@ -18,7 +18,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from main.views import HomeView
+from main.views import HomeView, rgpdView
 from account.views import RegisterView, LoginView, LogoutView
 from reservation.views import ReservationView
 
@@ -29,6 +29,7 @@ urlpatterns = [
     path('connexion', LoginView, name="login"), 
     path('deconnexion', LogoutView, name="logout"),
     path('reservation', ReservationView, name="reservation"),
+    path('rgpd', rgpdView, name="rgpd"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 handler404 = "main.views.NotFoundView"
