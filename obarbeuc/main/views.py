@@ -9,3 +9,6 @@ def HomeView(request):
         'todayLunchs' : todayLunchs
     }
     return render(request, "home.html", context)
+
+def NotFoundView(request, exception):
+    return render(request, "404.html")

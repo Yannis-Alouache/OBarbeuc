@@ -30,3 +30,5 @@ urlpatterns = [
     path('deconnexion', LogoutView, name="logout"),
     path('reservation', ReservationView, name="reservation"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+handler404 = "main.views.NotFoundView"
