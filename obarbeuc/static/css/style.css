@@ -336,7 +336,7 @@ label { }
 .logo { }
 .header { -webkit-transition: background-color .8s ease-out; -moz-transition: background-color .8s ease-out; 
   background-color: #d41b2c; -o-transition: background-color .8s ease-out; 
-  transition: background-color .8s ease-out;  z-index: 9999;     position: relative;
+  transition: background-color .8s ease-out;  z-index: 1000;     position: relative;
     padding-top: 10px;
     padding-bottom: 10px;}
 

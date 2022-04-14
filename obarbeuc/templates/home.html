@@ -17,6 +17,29 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="covid-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Bonjour chères clients et clientes,</h2>
+                    <p>La covid nous affecte tous particulièrement le virus est dangereux et si vous l'attrapez, merci de nous le faire savoir pour que nous puissions prevenir les personne ayant était au meme service que vous. <br>
+                        Vous pourrez trouvez le formulaire de contact pour le covid dans les liens rapide en bas du site.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, j'ai compris</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="space-medium">
         <div class="container">
             <div class="row">
@@ -249,4 +272,10 @@
             </div>
         </div>
     </div>
+    {% endblock %}
+
+    {% block js %}
+    <script>
+        $('#covid-modal').modal('show')
+    </script>
     {% endblock %}
