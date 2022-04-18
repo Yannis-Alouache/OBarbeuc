@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div class="space-medium">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-title text-center">
+                        <h1>Formulaire Covid</h1>
+                        <h5>Vous aviez le covid durant une visite chez nous ?</h5>
+                    </div>
+                    {% if message_failure %}
+                      <div class="alert alert-danger" role="alert">
+                        {{message_failure}}
+                      </div>
+                    {% elif message_success %}
+                      <div class="alert alert-success" role="alert">
+                        {{message_success}}
+                      </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-center">
+                    <div class="section-title text-center">
+                        <form method="post">
+
+                            {% csrf_token %}
+
+                            <div class="form-group row">
+                              <label for="text" class="col-4 col-form-label"></label> 
+                              <div class="col-8">
+                                <input id="date" name="{{form.date.name}}" placeholder="Date et Heure" type="date" class="form-control custom-form-control">
+                                  {% for error in form.date.errors %}
+                                    <small class="form-text text-muted text-danger">{{error}}</small>
+                                  {% endfor %}
+                              </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label for="text" class="col-4 col-form-label"></label> 
+                                <div class="col-8">
+                                   <select id="service" class="form-control custom-form-control" name="{{form.service.name}}">
+                                      {% for key, value in form.fields.service.choices %}
+                                          <option value="{{ key }}">{{ value }}</option>
+                                      {% endfor %}
+                                   </select>  
+                                    {% for error in form.service.errors %}
+                                      <small class="form-text text-muted text-danger">{{error}}</small>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="form-group row">
+                              <div class="offset-4 col-8">
+                                <button name="submit" type="submit" class="btn btn-primary">Envoyer</button>
+                              </div>
+                            </div>  
+                          </form>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+    {% endblock %}

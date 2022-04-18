@@ -13,7 +13,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 import mimetypes
+import environ
 mimetypes.add_type("text/css", ".css", True)
+
+env = environ.Env()
+environ.Env.read_env()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)%n2vt4t)%dr9u5gijody-wmer@$@^%f!&o+e6-h1qd2h1-y(y'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -83,9 +87,9 @@ WSGI_APPLICATION = 'obarbeuc.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'obarbeucbdd',
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': env("DB_NAME"),
+        'USER': env("DB_USER"),
+        'PASSWORD': env("DB_PASS"),
         'PORT': '3306',
         'HOST': 'localhost'
     }
@@ -138,3 +142,11 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 AUTH_USER_MODEL = 'account.Account'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = env("EMAIL_HOST_USER")

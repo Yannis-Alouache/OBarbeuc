@@ -25,7 +25,7 @@ def table_valid(reservation):
     remaining_table = get_remaining_table(reservations)
 
     print("Nombre de table restante", remaining_table)
-    print("Nombre de table voulue ", rese&rvation.table)
+    print("Nombre de table voulue ", reservation.table)
 
     if remaining_table < reservation.table:
         return False
