@@ -13,7 +13,6 @@ def RegisterView(request):
             raw_passord = form.cleaned_data.get('password1')
             account = authenticate(email=email, password=raw_passord)
             login(request, account)
-            print("==========  COMPTE CREER SUUUUUUUUUUUUUUUUUUUUUUU   ==========")
             context['form'] = form
             context['message'] = f'Compte crée, Bienvenue {account.first_name}'
             return render(request, 'register.html', context)
@@ -38,12 +37,11 @@ def LoginView(request):
             )
             if user is not None:
                 login(request, user)
-                print("connectez avec " + user.first_name + " " + user.last_name)
                 context['messageSuccess'] = f'Bonjour {user.first_name} ! Vous êtes connecté'
                 return render(request, 'login.html', context)
             else:
                 context['messageFail'] = "Erreur de connexion"
-                return render(request, 'login.html', context)
+                return render(request, 'logIn.html', context)
     else:
         context['form'] = LoginForm()
     return render(request, 'logIn.html', context)
